@@ -3,7 +3,8 @@
 #include <iostream>
 
 
-Pracownik::Pracownik()
+Pracownik::Pracownik():
+	m_pNastepny(nullptr)
 {
 }
 
@@ -44,6 +45,7 @@ void Pracownik::Wypisz() const
 	m_Nazwisko.Wypisz();
 	std::cout << " ";
 	m_DataUrodzenia.Wypisz();
+	std::cout << std::endl;
 }
 
 void Pracownik::Wpisz()
@@ -68,15 +70,17 @@ int Pracownik::SprawdzNazwisko(const char * por_nazwisko) const
 
 int Pracownik::Porownaj(const Pracownik& wzorzec) const
 {
-	int imie = m_Imie.SprawdzNapis(wzorzec.Imie());
-	if (imie) return 1;
-
-	int nazwisko = m_Nazwisko.SprawdzNapis(wzorzec.Nazwisko());
-	if (nazwisko) return 1;
-
-	int data = m_DataUrodzenia.Porownaj(wzorzec.m_DataUrodzenia);
-	if (data) return 1;
-
-	if (imie == 0 && nazwisko == 0 && data == 0) return 0;
-	return -1;
+	if (SprawdzNazwisko(wzorzec.Nazwisko()) == 0)
+	{
+		if (SprawdzImie(wzorzec.Imie()) == 0)
+		{
+			if (m_DataUrodzenia.Porownaj(wzorzec.m_DataUrodzenia) == 0) return 0;
+			if (m_DataUrodzenia.Porownaj(wzorzec.m_DataUrodzenia) < 0) return -1;
+			return 1;
+		}
+		if (SprawdzImie(wzorzec.Imie()) < 0) return -1;
+		return 1;
+	}
+	if (SprawdzNazwisko(wzorzec.Nazwisko()) < 0) return -1;
+	return 1;
 }

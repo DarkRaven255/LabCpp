@@ -44,14 +44,14 @@ void ListaPracownikow::Dodaj(const Pracownik& p)
 				m_nLiczbaPracownikow++;
 				break;
 			}
-			if (cmp < 0 && last == nullptr)
+			if (cmp <0 && last == nullptr)
 			{
 				m_pPoczatek = toAdd;
-				toAdd->m_pNastepny = current;
+				m_pPoczatek->m_pNastepny = current;
 				m_nLiczbaPracownikow++;
 				break;
 			}
-			if (cmp > 0 && toAdd->Porownaj(*current->m_pNastepny) < 0)
+			if(cmp > 0 && toAdd->Porownaj(*current->m_pNastepny)<0)
 			{
 				toAdd->m_pNastepny = current->m_pNastepny;
 				current->m_pNastepny = toAdd;

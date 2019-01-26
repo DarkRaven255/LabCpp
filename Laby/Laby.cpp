@@ -1,26 +1,28 @@
 #include <iostream>
 #include "Pracownik.h"
 #include "ListaPracownikow.h"
+#include "Napis.h"
 
 int main()
 {
 	char z{'k'};
 
-	while (z != 'w')
-	{
-		Pracownik toMod;
-		Pracownik const *isFound;
-		ListaPracownikow list;
-		Napis imie, nazwisko;
+	Pracownik toMod;
+	Pracownik const *isFound;
+	ListaPracownikow list;
+	Napis imie, nazwisko;
 
+	while (z!='w')
+	{
 		std::cout << "1 - Dodaj pracownika\n";
 		std::cout << "2 - Usun pracownika\n";
 		std::cout << "3 - Wyswietl liste pracownikow\n";
 		std::cout << "4 - Wyszukaj pracownika\n";
-		std::cout << "w - Wyjdz\n";
+		std::cout << "w - Wyjdz\n\n";
 
 		fflush(stdin);
 		std::cin >> z;
+		fflush(stdin);
 
 		switch(z)
 		{
@@ -53,7 +55,14 @@ int main()
 			}
 			else std::cout << "Brak takiego pracownika!\n";
 			break;
-		default: ;
+		case 'w':
+			break;
+		default:
+			system("cls");
+			std::cout << "\nZly wybor\n";
 		}
 	}
+
+	system("PAUSE");
+	return 0;
 }

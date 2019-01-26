@@ -55,11 +55,19 @@ void Data::Wpisz()
 
 int Data::Porownaj(const Data & wzor) const
 {
-	if (m_nDzien == wzor.Dzien() && m_nMiesiac == wzor.Miesiac() && m_nRok == wzor.Rok()) return 0;
-	else if (m_nRok>wzor.Rok()) return 1;
-	else if (m_nMiesiac > wzor.Miesiac()) return 1;
-	else if (m_nDzien > wzor.Rok()) return 1;
-	else return -1;
+	if (m_nRok == wzor.m_nRok)
+	{
+		if (m_nMiesiac == wzor.m_nMiesiac)
+		{
+			if (m_nDzien == wzor.m_nDzien) return 0;
+			if (m_nDzien > wzor.m_nDzien) return 1;
+			return -1;
+		}
+		if (this->m_nMiesiac > wzor.m_nMiesiac) return 1;
+		return -1;
+	}
+	if (m_nRok > wzor.m_nRok) return 1;
+	return -1;
 }
 
 void Data::Koryguj()
