@@ -15,15 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Napis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pracownik.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="Laby.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Laby.cpp">
+    <ClCompile Include="Data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Napis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pracownik.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
