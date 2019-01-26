@@ -1,8 +1,11 @@
 #pragma once
+
+#include <iostream>
+
 class Data
 {
 public:
-	Data();
+	Data(int d = 1, int m = 1, int r = 2000);
 	~Data();
 
 	void Ustaw(int d, int m, int r);
@@ -15,6 +18,9 @@ public:
 	void Wpisz();
 	
 	int Porownaj(const Data &wzor) const;
+
+	friend std::ostream &operator<<(std::ostream &wy, Data &d);
+	friend std::istream &operator>>(std::istream &we, Data &d);
 
 private:
 	int m_nDzien;

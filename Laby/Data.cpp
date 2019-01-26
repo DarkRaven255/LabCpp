@@ -2,10 +2,10 @@
 #include <iostream>
 
 
-Data::Data():
-	m_nDzien(1),
-	m_nMiesiac(1),
-	m_nRok(2000)
+Data::Data(int d, int m, int r):
+	m_nDzien(d),
+	m_nMiesiac(m),
+	m_nRok(r)
 {
 }
 
@@ -90,4 +90,19 @@ void Data::Koryguj()
 		else m_nDzien = 28;
 		break;
 	}
+}
+
+std::ostream& operator<<(std::ostream& wy, Data& d)
+{
+	return wy << d.m_nDzien << '.' << d.m_nMiesiac << '.' << d.m_nRok;
+}
+
+std::istream& operator>>(std::istream& we, Data& d)
+{
+	int dzien, miesiac, rok;
+	we >> dzien;
+	we >> miesiac;
+	we >> rok;
+	d.Ustaw(dzien, miesiac, rok);
+	return we;
 }

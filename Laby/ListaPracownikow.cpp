@@ -118,7 +118,8 @@ void ListaPracownikow::WypiszPracownikow() const
 const Pracownik* ListaPracownikow::Szukaj(const char* nazwisko, const char* imie) const
 {
 	Pracownik *temp = m_pPoczatek;
-	Napis szNazwisko, szImie;
+	Napis szNazwisko;
+	Napis szImie;
 	szNazwisko.Ustaw(nazwisko);
 	szImie.Ustaw(imie);
 	for (auto i = 0; i < m_nLiczbaPracownikow; i++)
