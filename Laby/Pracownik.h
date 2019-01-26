@@ -12,13 +12,16 @@ public:
 
 	void Imie(const char* nowe_imie);
 	void Nazwisko(const char* nowe_nazwisko);
-	void DataUrodzenia(int nowy_dzien, int nowy_miesiac, int nowy_rok);
+	void DataUrodzenia(const int nowy_dzien,const int nowy_miesiac,const int nowy_rok);
 
 	void Wypisz() const;
 	void Wpisz();
 
 	int SprawdzImie(const char* por_imie) const;
 	int SprawdzNazwisko(const char* por_nazwisko) const;
+	int Porownaj(const Pracownik& wzorzec) const;
+
+	Pracownik* m_pNastepny;
 
 private:
 	Napis m_Imie;

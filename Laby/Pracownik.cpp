@@ -32,7 +32,7 @@ void Pracownik::Nazwisko(const char * nowe_nazwisko)
 	m_Nazwisko.Ustaw(nowe_nazwisko);
 }
 
-void Pracownik::DataUrodzenia(int nowy_dzien, int nowy_miesiac, int nowy_rok)
+void Pracownik::DataUrodzenia(const int nowy_dzien, const int nowy_miesiac, const int nowy_rok)
 {
 	m_DataUrodzenia.Ustaw(nowy_dzien, nowy_miesiac, nowy_rok);
 }
@@ -64,4 +64,19 @@ int Pracownik::SprawdzImie(const char * por_imie) const
 int Pracownik::SprawdzNazwisko(const char * por_nazwisko) const
 {
 	return m_Nazwisko.SprawdzNapis(por_nazwisko);
+}
+
+int Pracownik::Porownaj(const Pracownik& wzorzec) const
+{
+	int imie = m_Imie.SprawdzNapis(wzorzec.Imie());
+	if (imie) return 1;
+
+	int nazwisko = m_Nazwisko.SprawdzNapis(wzorzec.Nazwisko());
+	if (nazwisko) return 1;
+
+	int data = m_DataUrodzenia.Porownaj(wzorzec.m_DataUrodzenia);
+	if (data) return 1;
+
+	if (imie == 0 && nazwisko == 0 && data == 0) return 0;
+	return -1;
 }
