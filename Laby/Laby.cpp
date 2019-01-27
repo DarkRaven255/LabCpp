@@ -4,16 +4,19 @@
 #include "Napis.h"
 #include "Kierownik.h"
 
+using namespace std;
+
 int main()
 {
-	char z{'k'};
+	/*char z{'k'};
 
 	Pracownik toMod;
-	Kierownik toModK;
 	Pracownik const *isFound;
+	Kierownik toModK;
 	ListaPracownikow listWorkers;
 	ListaPracownikow listManagers;
 	Napis imie, nazwisko;
+	Data manager;
 
 	while (z!='w')
 	{
@@ -77,7 +80,7 @@ int main()
 		case '7':
 			system("cls");
 			toModK.Wpisz();
-			listManagers.Dodaj(toMod);
+			listManagers.Dodaj(toModK);
 			break;
 		case '8':
 			system("cls");
@@ -101,6 +104,155 @@ int main()
 		case 'w':
 			break;
 		}
+	}*/
+
+	Pracownik *p;
+	ListaPracownikow lp;
+	const Pracownik *szukany;
+	char z;
+	int t{};
+	Kierownik *k;
+
+	for (;;)
+	{
+
+		cout << "MENU" << endl << "----------------------" << endl << "d - dodaj pracownika" << endl << "u - usun pracownika" << endl;
+		cout << "w - wyswietl liste pracownikow" << endl << "s - szukaj pracownika" << endl;
+		cout << "l - wczytaj z pliku" << endl << "z - zapisz do pliku" << endl;
+		cout << "c - skopiuj pracownika" << endl;
+		cout << "k - kierownik" << endl;
+		cout << "q - wyjscie" << endl << "Wybor: ";
+		fflush(stdin);
+		cin >> z;
+
+		switch (z)
+		{
+		case 'd':
+			cout << "Dane pracownika do dodania" << endl;
+			p = new Pracownik;
+			cin >> *p;
+			lp.Dodaj(*p);
+			delete p;
+			break;
+		case 'u':
+			cout << "Dane pracownika do usuniecia" << endl;
+			p = new Pracownik;
+			cin >> *p;
+			lp.Usun(*p);
+			delete p;
+			break;
+		case 'w':
+			cout << "Lista pracownikow: " << endl;
+			lp.WypiszPracownikow();
+			break;
+		case 's':
+			cout << "Dane pracownika do wyszukania:" << endl;
+			p = new Pracownik;
+			cin >> *p;
+			szukany = lp.Szukaj(p->Nazwisko(), p->Imie());
+			if (szukany != nullptr) { cout << "Znaleziono pracownika." << endl; }
+			else { cout << "Nie znaleziono pracownika" << endl; }
+			delete p;
+			break;
+		case 'c':
+			cout << "Dane pracownika do skopiowania:" << endl;
+			p = new Pracownik;
+			cin >> *p;
+			szukany = lp.Szukaj(p->Nazwisko(), p->Imie());
+			if (szukany != nullptr)
+			{
+				Pracownik *p1;
+				p1 = new Pracownik;
+				p1 = p->KopiaObiektu();
+				lp.Dodaj(*p1);
+				cout << endl << "Znaleziono pracownika i dodano kopie do listy." << endl;
+				delete p1;
+				/**p1 = *p;
+				p1->WypiszDane();
+				cout << endl << "Znaleziono pracownika i dodano kopie do listy." << endl;
+				lp.Dodaj_kopia(*p1);
+				delete p1;*/
+
+			}
+			else { cout << "Nie znaleziono pracownika" << endl; }
+			delete p;
+			break;
+		case 'z':
+			cout << "Zapisano do pliku" << endl;
+			lp.ZapiszDoPliku();
+			break;
+		case 'k':
+			system("CLS");
+			t = 0;
+			for (;;)
+			{
+				cout << "d - dodaj kierownika" << endl;
+				cout << "w - wyswietl informacje o kierowniku" << endl;
+				cout << "s - skopiuj kierownika" << endl;
+				cout << "q - wyjsc" << endl;
+				cout << "Wybor: ";
+				fflush(stdin);
+				cin >> z;
+				switch (z)
+				{
+				case'd':
+					k = new Kierownik;
+					cin >> *k;
+					lp.Dodaj(*k);
+					t++;
+					break;
+				case'w':
+					if (t > 0 && k != nullptr)
+						k->WypiszDane();
+					else cout << "Nie ma kierownika";
+					break;
+				case'q':
+					if (t > 0)
+						delete k;
+					break;
+				case's':
+					cout << "Dane kierownika do skopiowania:" << endl;
+					k = new Kierownik;
+					cin >> *k;
+					szukany = lp.Szukaj(k->Nazwisko(), k->Imie());
+					if (szukany != nullptr)
+					{
+						t++;
+						Kierownik *k1;
+						k1 = new Kierownik;
+						k1 = k->KopiaObiektu();
+						lp.Dodaj(*k1);
+						cout << endl << "Znaleziono pracownika i dodano kopie do listy." << endl;
+						delete k1;
+					}
+					else { cout << "Nie znaleziono pracownika" << endl; }
+					//delete k;
+					break;
+				default:
+					cout << endl << "Bledny znak" << endl;
+				}
+				if (z == 'q')
+					break;
+				getchar();
+				getchar();
+				system("CLS");
+			}
+			break;
+		case 'l':
+			cout << "Odczyt z pliku" << endl;
+			lp.WczytajZPliku();
+			break;
+		case 'q':
+			system("CLS");
+			cout << "KONIEC PROGRAMU" << endl;
+			system("pause");
+			return 0;
+		default:
+			cout << endl << "Bledny znak" << endl;
+		}
+		getchar();
+		getchar();
+		system("CLS");
 	}
 	return 0;
 }

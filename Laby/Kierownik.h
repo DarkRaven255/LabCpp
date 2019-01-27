@@ -15,6 +15,7 @@ public:
 
 	virtual Pracownik* KopiaObiektu() const;
 	virtual void WypiszDane();
+
 private:
 	Napis m_NazwaDzialu;
 	int m_nLiczbaPracownikow;
