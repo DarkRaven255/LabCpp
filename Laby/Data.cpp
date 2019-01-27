@@ -72,22 +72,47 @@ int Data::Porownaj(const Data & wzor) const
 
 void Data::Koryguj()
 {
-	if (m_nMiesiac < 1)m_nMiesiac = 1;
-	else if (m_nMiesiac > 12)m_nMiesiac = 12;
+	//if (m_nMiesiac < 1)m_nMiesiac = 1;
+	//else if (m_nMiesiac > 12)m_nMiesiac = 12;
 
-	if (m_nDzien < 1)m_nDzien = 1;
+	//if (m_nDzien < 1)m_nDzien = 1;
 
+	//switch (m_nMiesiac)
+	//{
+	//case 1: case 5: case 3: case 7: case 8: case 10: case 12:
+	//	if (m_nDzien > 31) m_nDzien = 31;
+	//	break;
+	//case 4: case 6: case 9: case 11:
+	//	if (m_nDzien > 30) m_nDzien = 30;
+	//	break;
+	//case 2:
+	//	if ((m_nRok % 4 == 0) && (m_nRok % 100 != 0) && (m_nDzien > 29)) m_nDzien = 29;
+	//	else m_nDzien = 28;
+	//	break;
+	//}
+	int tmp;
+	if (m_nRok < 1900) m_nRok = 1900;
+	if (m_nRok > 2100) m_nRok = 2100;
+	if ((m_nRok % 4 == 0 && m_nRok % 100 != 0) || m_nRok % 400 == 0) tmp = 29;
+	else tmp = 28;
+	if (m_nMiesiac < 1) m_nMiesiac = 1;
+	if (m_nMiesiac > 12) m_nMiesiac = 12;
 	switch (m_nMiesiac)
 	{
-	case 1: case 5: case 3: case 7: case 8: case 10: case 12:
+	case 1:	case 3:	case 5:	case 7:	case 8:	case 10: case 12:
 		if (m_nDzien > 31) m_nDzien = 31;
+		if (m_nDzien < 1) m_nDzien = 1;
 		break;
-	case 4: case 6: case 9: case 11:
+	case 4:	case 6:	case 9:	case 11:
 		if (m_nDzien > 30) m_nDzien = 30;
+		if (m_nDzien < 1) m_nDzien = 1;
 		break;
 	case 2:
-		if ((m_nRok % 4 == 0) && (m_nRok % 100 != 0) && (m_nDzien > 29)) m_nDzien = 29;
-		else m_nDzien = 28;
+		if (m_nDzien > tmp)	m_nDzien = tmp;
+		if (m_nDzien < 1) m_nDzien = 1;
+		break;
+	default:
+		std::cout << "blad" << std::endl;
 		break;
 	}
 }
