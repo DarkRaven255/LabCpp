@@ -20,6 +20,8 @@ ListaPracownikow::~ListaPracownikow()
 void ListaPracownikow::Dodaj(const Pracownik& p)
 {
 	Pracownik *toAdd = new Pracownik(p);
+
+	//Spradza czy jest to pierwszy pracownik na liscie
 	if (m_pPoczatek == nullptr)
 	{
 		m_pPoczatek = toAdd;
@@ -31,20 +33,24 @@ void ListaPracownikow::Dodaj(const Pracownik& p)
 		Pracownik *last = nullptr;
 		while (current!= nullptr)
 		{
+			//Pracownika do dodania z pracownikiem aktualnie wskazywanym przez wsk current
 			int cmp = toAdd->Porownaj(*current);
 
+			//Jezeli cmp==0 (dodawany juz istnieje na liscie) to nie dodaje
 			if (!cmp)
 			{
 				std::cout << "\n\nPracownik juz jest na liscie!\n\n";
 				delete toAdd;
 				break;
 			}
+			//Jezeli obiekt toAdd jest wyzej w kolejnosci od aktualnego i nastepny po aktualnym jest pusty to to dodaje na koniec
 			if (cmp > 0 && current->m_pNastepny == nullptr)
 			{
 				current->m_pNastepny = toAdd;
 				m_nLiczbaPracownikow++;
 				break;
 			}
+			//Jezeli obiekt toAdd jest nizej w kolejnosci od aktualnego i poprzedni jest pusty to dodaje na pierwsze miejsce na liscie
 			if (cmp <0 && last == nullptr)
 			{
 				m_pPoczatek = toAdd;
@@ -52,6 +58,7 @@ void ListaPracownikow::Dodaj(const Pracownik& p)
 				m_nLiczbaPracownikow++;
 				break;
 			}
+			//Jezeli toAdd jest wyzej od aktualnego ale nizej od nastepnego po aktualnym to dodaje pomiedzy nich
 			if(cmp > 0 && toAdd->Porownaj(*current->m_pNastepny)<0)
 			{
 				toAdd->m_pNastepny = current->m_pNastepny;
