@@ -11,7 +11,7 @@ public:
 	Kierownik &operator=(const Kierownik &wzor);
 	bool operator==(const Kierownik &wzor) const;
 	friend std::ostream& operator<<(std::ostream &wy, const Kierownik &s);
-	friend std::istream &operator>>(std::istream &we, Kierownik &s);
+	friend std::istream& operator>>(std::istream &we, Kierownik &s);
 
 	virtual Pracownik* KopiaObiektu();
 	virtual void WypiszDane();

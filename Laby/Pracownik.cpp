@@ -124,7 +124,7 @@ Pracownik* Pracownik::KopiaObiektu()
 	return copy;
 }
 
-std::ostream& operator<<(std::ostream& wy, Pracownik& p)
+std::ostream& operator<<(std::ostream& wy, const Pracownik& p)
 {
 	wy << p.m_Imie;
 	wy << p.m_Nazwisko;

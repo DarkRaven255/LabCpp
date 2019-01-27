@@ -92,14 +92,14 @@ void Data::Koryguj()
 	}
 }
 
-std::ostream& operator<<(std::ostream& wy, Data& d)
+std::ostream& operator<<(std::ostream& wy,const Data& d)
 {
 	return wy << d.m_nDzien << ' ' << d.m_nMiesiac << ' ' << d.m_nRok;
 }
 
 std::istream& operator>>(std::istream& we, Data& d)
 {
-	int dzien, miesiac, rok, dot;
+	int dzien, miesiac, rok;
 	we >> dzien;
 	we >> miesiac;
 	we >> rok;

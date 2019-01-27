@@ -27,8 +27,8 @@ public:
 	Pracownik &operator=(const Pracownik &wzor);
 	bool operator==(const Pracownik &wzor);
 
-	friend std::ostream & operator<<(std::ostream &wy, Pracownik &p);
-	friend std::istream & operator>>(std::istream &we, Pracownik &p);
+	friend std::ostream& operator<<(std::ostream &wy, const Pracownik &p);
+	friend std::istream& operator>>(std::istream &we, Pracownik &p);
 
 	virtual void WypiszDane();
 	virtual Pracownik* KopiaObiektu();

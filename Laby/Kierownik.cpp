@@ -8,10 +8,10 @@ Kierownik::Kierownik(const char* im, const char* naz, int dzien, int miesiac, in
 }
 
 Kierownik::Kierownik(const Kierownik& wzor):
-	Pracownik(wzor)
+	Pracownik(wzor),
+	m_NazwaDzialu(wzor.m_NazwaDzialu),
+	m_nLiczbaPracownikow(wzor.m_nLiczbaPracownikow)
 {
-	m_NazwaDzialu = wzor.m_NazwaDzialu;
-	m_nLiczbaPracownikow = wzor.m_nLiczbaPracownikow;
 }
 
 
@@ -23,6 +23,7 @@ Kierownik& Kierownik::operator=(const Kierownik& wzor)
 {
 	if (this != &wzor)
 	{
+		static_cast<Pracownik&>(*this) = wzor;
 		m_NazwaDzialu = wzor.m_NazwaDzialu;
 		m_nLiczbaPracownikow = wzor.m_nLiczbaPracownikow;
 	}
@@ -31,7 +32,7 @@ Kierownik& Kierownik::operator=(const Kierownik& wzor)
 
 bool Kierownik::operator==(const Kierownik& wzor) const
 {
-	return this->Porownaj(wzor) == 0;
+	return this->Porownaj(wzor) == 0 && m_NazwaDzialu == wzor.m_NazwaDzialu && m_nLiczbaPracownikow == wzor.m_nLiczbaPracownikow;
 }
 
 Pracownik* Kierownik::KopiaObiektu()
@@ -47,13 +48,17 @@ void Kierownik::WypiszDane()
 
 std::ostream& operator<<(std::ostream& wy, const Kierownik& s)
 {
+	const Pracownik &p = s;
+	wy << p << std::endl;
 	wy << s.m_NazwaDzialu;
-	wy << s.m_nLiczbaPracownikow;
+	wy << s.m_nLiczbaPracownikow << std::endl;
 	return wy;
 }
 
 std::istream& operator>>(std::istream& we, Kierownik& s)
 {
+	Pracownik &p = s;
+	we >> p;
 	we >> s.m_NazwaDzialu;
 	we >> s.m_nLiczbaPracownikow;
 	return we;
