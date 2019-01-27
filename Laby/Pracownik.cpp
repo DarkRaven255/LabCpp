@@ -118,10 +118,9 @@ void Pracownik::WypiszDane()
 	std::cout << *this << std::endl;
 }
 
-Pracownik* Pracownik::KopiaObiektu()
+Pracownik* Pracownik::KopiaObiektu() const
 {
-	Pracownik *copy = new Pracownik(*this);
-	return copy;
+	return new Pracownik(*this);
 }
 
 std::ostream& operator<<(std::ostream& wy, const Pracownik& p)

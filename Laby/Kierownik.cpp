@@ -35,10 +35,9 @@ bool Kierownik::operator==(const Kierownik& wzor) const
 	return this->Porownaj(wzor) == 0 && m_NazwaDzialu == wzor.m_NazwaDzialu && m_nLiczbaPracownikow == wzor.m_nLiczbaPracownikow;
 }
 
-Pracownik* Kierownik::KopiaObiektu()
+Pracownik* Kierownik::KopiaObiektu() const
 {
-	Kierownik *copy = new Kierownik(*this);
-	return copy;
+	return new Kierownik(*this);
 }
 
 void Kierownik::WypiszDane()

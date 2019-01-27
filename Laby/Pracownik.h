@@ -31,7 +31,7 @@ public:
 	friend std::istream& operator>>(std::istream &we, Pracownik &p);
 
 	virtual void WypiszDane();
-	virtual Pracownik* KopiaObiektu();
+	virtual Pracownik* KopiaObiektu() const;
 
 	//friend class Kierownik;
 

@@ -13,7 +13,7 @@ public:
 	friend std::ostream& operator<<(std::ostream &wy, const Kierownik &s);
 	friend std::istream& operator>>(std::istream &we, Kierownik &s);
 
-	virtual Pracownik* KopiaObiektu();
+	virtual Pracownik* KopiaObiektu() const;
 	virtual void WypiszDane();
 private:
 	Napis m_NazwaDzialu;

@@ -2,14 +2,17 @@
 #include "Pracownik.h"
 #include "ListaPracownikow.h"
 #include "Napis.h"
+#include "Kierownik.h"
 
 int main()
 {
 	char z{'k'};
 
 	Pracownik toMod;
+	Kierownik toModK;
 	Pracownik const *isFound;
-	ListaPracownikow list;
+	ListaPracownikow listWorkers;
+	ListaPracownikow listManagers;
 	Napis imie, nazwisko;
 
 	while (z!='w')
@@ -20,6 +23,10 @@ int main()
 		std::cout << "4 - Wyszukaj pracownika\n";
 		std::cout << "5 - Zapisz do pliku\n";
 		std::cout << "6 - Wczytaj z pliku\n";
+		std::cout << "7 - Dodaj kierownika\n";
+		std::cout << "8 - Usun kierownika\n";
+		std::cout << "9 - Wyswietl liste kierownikow\n";
+		std::cout << "0 - Wyswietl liste wszystkich pracownikow\n";
 		std::cout << "w - Wyjdz\n\n";
 
 		fflush(stdin);
@@ -31,16 +38,16 @@ int main()
 		case '1':
 			system("cls");
 			toMod.Wpisz();
-			list.Dodaj(toMod);
+			listWorkers.Dodaj(toMod);
 			break;
 		case '2':
 			system("cls");
 			toMod.Wpisz();
-			list.Usun(toMod);
+			listWorkers.Usun(toMod);
 			break;
 		case '3':
 			system("cls");
-			list.WypiszPracownikow();
+			listWorkers.WypiszPracownikow();
 			break;
 		case '4':
 			system("cls");
@@ -49,7 +56,7 @@ int main()
 			std::cout << "Podaj nazwisko: ";
 			nazwisko.Wpisz();
 
-			isFound = list.Szukaj(nazwisko.Zwroc(), imie.Zwroc());
+			isFound = listWorkers.Szukaj(nazwisko.Zwroc(), imie.Zwroc());
 
 			if(isFound!=nullptr)
 			{
@@ -58,22 +65,42 @@ int main()
 			else std::cout << "Brak takiego pracownika!\n";
 			break;
 		case '5':
-			list.ZapiszDoPliku();
+			listWorkers.ZapiszDoPliku();
 			system("cls");
 			std::cout << "Zapisano!\n";
 			break;
 		case '6':
-			list.WczytajZPliku();
+			listWorkers.WczytajZPliku();
 			system("cls");
 			std::cout << "Wczytano!\n";
 			break;
-		case 'w':
+		case '7':
+			system("cls");
+			toModK.Wpisz();
+			listManagers.Dodaj(toMod);
+			break;
+		case '8':
+			system("cls");
+			toModK.Wpisz();
+			listManagers.Usun(toMod);
+			break;
+		case '9':
+			system("cls");
+			listManagers.WypiszPracownikow();
+			break;
+		case '0':
+			system("cls");
+			std::cout << "Pracownicy:\n";
+			listWorkers.WypiszPracownikow();
+			std::cout << "Kierownicy:\n";
+			listManagers.WypiszPracownikow();
 			break;
 		default:
 			system("cls");
 			std::cout << "\nZly wybor!\n";
+		case 'w':
+			break;
 		}
 	}
-
 	return 0;
 }
