@@ -18,6 +18,8 @@ int main()
 		std::cout << "2 - Usun pracownika\n";
 		std::cout << "3 - Wyswietl liste pracownikow\n";
 		std::cout << "4 - Wyszukaj pracownika\n";
+		std::cout << "5 - Zapisz do pliku\n";
+		std::cout << "6 - Wczytaj z pliku\n";
 		std::cout << "w - Wyjdz\n\n";
 
 		fflush(stdin);
@@ -55,16 +57,23 @@ int main()
 			}
 			else std::cout << "Brak takiego pracownika!\n";
 			break;
+		case '5':
+			list.ZapiszDoPliku();
+			system("cls");
+			std::cout << "Zapisano!\n";
+			break;
+		case '6':
+			list.WczytajZPliku();
+			system("cls");
+			std::cout << "Wczytano!\n";
+			break;
 		case 'w':
 			break;
 		default:
 			system("cls");
-			std::cout << "\nZly wybor\n";
+			std::cout << "\nZly wybor!\n";
 		}
 	}
-
-	system("PAUSE");
-	
 
 	return 0;
 }

@@ -2,12 +2,24 @@
 #include <string.h>
 #include <iostream>
 
+int Pracownik::ID = 0;
 
-Pracownik::Pracownik():
-	m_pNastepny(nullptr)
+Pracownik::Pracownik(const char* im, const char* naz, int dzien, int miesiac, int rok):
+	m_Imie(im),
+	m_Nazwisko(naz),
+	m_DataUrodzenia(dzien,miesiac,rok),
+	m_pNastepny(nullptr),
+	m_nIDZatrudnienia(ID++)
 {
 }
 
+Pracownik::Pracownik(const Pracownik& wzor):
+	m_Imie(wzor.m_Imie),
+	m_Nazwisko(wzor.m_Nazwisko),
+	m_DataUrodzenia(wzor.m_DataUrodzenia),
+	m_nIDZatrudnienia(ID++)
+{
+}
 
 Pracownik::~Pracownik()
 {
@@ -83,4 +95,36 @@ int Pracownik::Porownaj(const Pracownik& wzorzec) const
 	}
 	if (SprawdzNazwisko(wzorzec.Nazwisko()) < 0) return -1;
 	return 1;
+}
+
+Pracownik& Pracownik::operator=(const Pracownik& wzor)
+{
+	if(this!=&wzor)
+	{
+		m_Imie = wzor.m_Imie;
+		m_Nazwisko = wzor.m_Nazwisko;
+		m_DataUrodzenia = wzor.m_DataUrodzenia;
+	}
+	return *this;
+}
+
+bool Pracownik::operator==(const Pracownik& wzor)
+{
+	return this->Porownaj(wzor) == 0;
+}
+
+std::ostream& operator<<(std::ostream& wy, Pracownik& p)
+{
+	wy << p.m_Imie;
+	wy << p.m_Nazwisko;
+	wy << p.m_DataUrodzenia;
+	return wy;
+}
+
+std::istream& operator>>(std::istream& we, Pracownik& p)
+{
+	we >> p.m_Imie;
+	we >> p.m_Nazwisko;
+	we >> p.m_DataUrodzenia;
+	return we;
 }

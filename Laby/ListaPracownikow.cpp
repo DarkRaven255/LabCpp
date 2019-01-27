@@ -1,5 +1,6 @@
 #include "ListaPracownikow.h"
 #include <iostream>
+#include <fstream>
 
 
 ListaPracownikow::ListaPracownikow():
@@ -131,4 +132,33 @@ const Pracownik* ListaPracownikow::Szukaj(const char* nazwisko, const char* imie
 		temp = temp->m_pNastepny;
 	}
 	return nullptr;
+}
+
+void ListaPracownikow::ZapiszDoPliku()
+{
+	std::ofstream fOut;
+	fOut.open("lista.txt");
+
+	auto *pracownik = m_pPoczatek;
+	while(pracownik != nullptr)
+	{
+		fOut << *pracownik;
+		if(pracownik->m_pNastepny!=nullptr) fOut << std::endl;
+		pracownik = pracownik->m_pNastepny;
+	}
+	fOut.close();
+}
+
+void ListaPracownikow::WczytajZPliku()
+{
+	std::ifstream fIn;
+	fIn.open("lista.txt");
+
+	Pracownik pracownik;
+	while(!fIn.eof())
+	{
+		fIn >> pracownik;
+		Dodaj(pracownik);
+	}
+	fIn.close();
 }

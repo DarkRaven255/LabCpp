@@ -11,9 +11,9 @@ Napis::Napis(const char* nap):
 	m_pszNapis[m_nDl] = '\0';
 }
 
-Napis::Napis(const Napis& wzor)
+Napis::Napis(const Napis& wzor):
+	m_nDl(wzor.m_nDl)
 {
-	m_nDl = wzor.m_nDl;
 	m_pszNapis = new char[m_nDl + 1];
 	strncpy(m_pszNapis, wzor.Zwroc(), m_nDl);
 	m_pszNapis[m_nDl] = '\0';
@@ -21,7 +21,7 @@ Napis::Napis(const Napis& wzor)
 
 Napis::~Napis()
 {
-	delete[] m_pszNapis;
+
 }
 
 const char * Napis::Zwroc() const
