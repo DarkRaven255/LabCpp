@@ -113,6 +113,17 @@ bool Pracownik::operator==(const Pracownik& wzor)
 	return this->Porownaj(wzor) == 0;
 }
 
+void Pracownik::WypiszDane()
+{
+	std::cout << *this << std::endl;
+}
+
+Pracownik* Pracownik::KopiaObiektu()
+{
+	Pracownik *copy = new Pracownik(*this);
+	return copy;
+}
+
 std::ostream& operator<<(std::ostream& wy, Pracownik& p)
 {
 	wy << p.m_Imie;

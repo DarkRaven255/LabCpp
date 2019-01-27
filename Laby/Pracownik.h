@@ -30,6 +30,11 @@ public:
 	friend std::ostream & operator<<(std::ostream &wy, Pracownik &p);
 	friend std::istream & operator>>(std::istream &we, Pracownik &p);
 
+	virtual void WypiszDane();
+	virtual Pracownik* KopiaObiektu();
+
+	//friend class Kierownik;
+
 private:
 	Napis m_Imie;
 	Napis m_Nazwisko;
