@@ -1,16 +1,15 @@
 #include "Kierownik.h"
 
-Kierownik::Kierownik(const char* nd, int lp):
+Kierownik::Kierownik(const char* im, const char* naz, int dzien, int miesiac, int rok, const char* nd, int lp) :
+	Pracownik(im, naz, dzien, miesiac, rok),
 	m_NazwaDzialu(nd),
 	m_nLiczbaPracownikow(lp)
 {
 }
 
-Kierownik::Kierownik(const Kierownik& wzor)
+Kierownik::Kierownik(const Kierownik& wzor):
+	Pracownik(wzor)
 {
-	//m_Imie = wzor.m_Imie;
-	//m_Nazwisko = wzor.m_Nazwisko;
-	//m_DataUrodzenia = wzor.m_DataUrodzenia;
 	m_NazwaDzialu = wzor.m_NazwaDzialu;
 	m_nLiczbaPracownikow = wzor.m_nLiczbaPracownikow;
 }
@@ -24,9 +23,6 @@ Kierownik& Kierownik::operator=(const Kierownik& wzor)
 {
 	if (this != &wzor)
 	{
-		//m_Imie = wzor.m_Imie;
-		//m_Nazwisko = wzor.m_Nazwisko;
-		//m_DataUrodzenia = wzor.m_DataUrodzenia;
 		m_NazwaDzialu = wzor.m_NazwaDzialu;
 		m_nLiczbaPracownikow = wzor.m_nLiczbaPracownikow;
 	}

@@ -4,7 +4,7 @@ class Kierownik :
 	public Pracownik
 {
 public:
-	Kierownik(const char* nd = "", int licz = 0);
+	Kierownik(const char* im = "", const char * naz = "", int dzien = 1, int miesiac = 1, int rok = 2000, const char* nd = "", int lp = 0);
 	Kierownik(const Kierownik &wzor);
 	~Kierownik();
 
