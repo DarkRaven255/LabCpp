@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 Laby/lista.txt
+Laby/managerowie.txt
+Laby/pracownicy.txt

@@ -33,8 +33,6 @@ public:
 	virtual void WypiszDane();
 	virtual Pracownik* KopiaObiektu() const;
 
-	//friend class Kierownik;
-
 private:
 	Napis m_Imie;
 	Napis m_Nazwisko;

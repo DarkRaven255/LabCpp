@@ -125,6 +125,11 @@ Pracownik* Pracownik::KopiaObiektu() const
 
 std::ostream& operator<<(std::ostream& wy, const Pracownik& p)
 {
+	if (&wy == &std::cout)
+	{
+		wy <<p.m_Imie.Zwroc()<<" "<<p.m_Nazwisko.Zwroc()<<" "<< p.m_DataUrodzenia;
+		return wy;
+	}
 	wy << p.m_Imie;
 	wy << p.m_Nazwisko;
 	wy << p.m_DataUrodzenia;
@@ -133,6 +138,16 @@ std::ostream& operator<<(std::ostream& wy, const Pracownik& p)
 
 std::istream& operator>>(std::istream& we, Pracownik& p)
 {
+	if (&we == &std::cin)
+	{
+		std::cout << "Podaj imie: ";
+		we >> p.m_Imie;
+		std::cout << "Podaj nazwisko: ";
+		we >> p.m_Nazwisko;
+		std::cout << "Podaj date:\n";
+		we >> p.m_DataUrodzenia;
+		return we;
+	}
 	we >> p.m_Imie;
 	we >> p.m_Nazwisko;
 	we >> p.m_DataUrodzenia;

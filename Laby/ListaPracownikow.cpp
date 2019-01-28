@@ -1,6 +1,7 @@
 #include "ListaPracownikow.h"
 #include <iostream>
 #include <fstream>
+#include "Kierownik.h"
 
 
 ListaPracownikow::ListaPracownikow():
@@ -101,7 +102,7 @@ void ListaPracownikow::Usun(const Pracownik& wzorzec)
 
 void ListaPracownikow::WypiszPracownikow() const
 {
-	Pracownik *temp = m_pPoczatek;
+	auto *temp = m_pPoczatek;
 
 	if(temp==nullptr)
 	{
@@ -111,7 +112,7 @@ void ListaPracownikow::WypiszPracownikow() const
 	{
 		while (temp != nullptr)
 		{
-			temp->Wypisz();
+			temp->WypiszDane();
 			temp = temp->m_pNastepny;
 		}
 	}
@@ -138,7 +139,7 @@ const Pracownik* ListaPracownikow::Szukaj(const char* nazwisko, const char* imie
 void ListaPracownikow::ZapiszDoPliku()
 {
 	std::ofstream fOut;
-	fOut.open("lista.txt");
+	fOut.open("pracownicy.txt");
 
 	auto *pracownik = m_pPoczatek;
 	while(pracownik != nullptr)
@@ -153,10 +154,39 @@ void ListaPracownikow::ZapiszDoPliku()
 void ListaPracownikow::WczytajZPliku()
 {
 	std::ifstream fIn;
-	fIn.open("lista.txt");
+	fIn.open("pracownicy.txt");
 
 	Pracownik pracownik;
 	while(!fIn.eof())
+	{
+		fIn >> pracownik;
+		Dodaj(pracownik);
+	}
+	fIn.close();
+}
+
+void ListaPracownikow::ZapiszDoPlikuM()
+{
+	std::ofstream fOut;
+	fOut.open("managerowie.txt");
+
+	auto *pracownik = m_pPoczatek;
+	while (pracownik != nullptr)
+	{
+		fOut << *pracownik;
+		if (pracownik->m_pNastepny != nullptr) fOut << std::endl;
+		pracownik = pracownik->m_pNastepny;
+	}
+	fOut.close();
+}
+
+void ListaPracownikow::WczytajZPlikuM()
+{
+	std::ifstream fIn;
+	fIn.open("managerowie.txt");
+
+	Kierownik pracownik;
+	while (!fIn.eof())
 	{
 		fIn >> pracownik;
 		Dodaj(pracownik);
