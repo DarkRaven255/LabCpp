@@ -7,7 +7,7 @@ class Pracownik
 public:
 	Pracownik(const char* im = "", const char * naz = "", int dzien = 1, int miesiac = 1, int rok = 2000);
 	Pracownik(const Pracownik &wzor);
-	~Pracownik();
+	virtual ~Pracownik();
 	const char* Imie() const;
 	const char* Nazwisko() const;
 

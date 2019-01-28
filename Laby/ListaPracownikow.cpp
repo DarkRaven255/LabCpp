@@ -185,7 +185,7 @@ void ListaPracownikow::WczytajZPlikuM()
 	std::ifstream fIn;
 	fIn.open("managerowie.txt");
 
-	Kierownik pracownik;
+	Pracownik pracownik;
 	while (!fIn.eof())
 	{
 		fIn >> pracownik;

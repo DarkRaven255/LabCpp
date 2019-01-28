@@ -23,6 +23,7 @@ Pracownik::Pracownik(const Pracownik& wzor):
 
 Pracownik::~Pracownik()
 {
+
 }
 
 const char * Pracownik::Imie() const

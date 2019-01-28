@@ -21,7 +21,8 @@ Napis::Napis(const Napis& wzor):
 
 Napis::~Napis()
 {
-
+	delete[] m_pszNapis;
+	m_nDl = 0;
 }
 
 const char * Napis::Zwroc() const
